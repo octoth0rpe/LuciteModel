@@ -9,7 +9,7 @@ use Lucite\Model\Model;
 global $user;
 $user = ['companyId' => 1];
 
-class TestUserModel extends Model
+class UserModel extends Model
 {
     public static string $tableName = 'users';
     public static string $primaryKey = 'userId';

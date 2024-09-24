@@ -7,10 +7,11 @@ namespace Lucite\Model\Tests;
 use Lucite\Model\Model;
 use Lucite\Model\NoPermissionCheckTrait;
 
-class TestCompanyModel extends Model
+class CompanyModel extends Model
 {
     use NoPermissionCheckTrait;
     public static string $tableName = 'companies';
     public static string $primaryKey = 'companyId';
     public static array $columns = ['name', 'createdOn'];
+    public static array $readonlyColumns = ['createdOn'];
 }

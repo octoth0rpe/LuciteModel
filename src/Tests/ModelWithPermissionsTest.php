@@ -17,7 +17,7 @@ final class ModelWithPermissionsTest extends TestWithMocks
     public function testModelFetchOneWithPermissionsApplied(): void
     {
         [$db, $logger] = $this->setupDeps();
-        $model = new TestUserModel($db, $logger);
+        $model = new UserModel($db, $logger);
         $this->setCompanyId(1);
         $user1 = $model->fetchOne(1);
         $this->assertEquals('company1user1', $user1['name']);
@@ -29,7 +29,7 @@ final class ModelWithPermissionsTest extends TestWithMocks
     {
         $this->expectException(NotFoundException::class);
         [$db, $logger] = $this->setupDeps();
-        $model = new TestUserModel($db, $logger);
+        $model = new UserModel($db, $logger);
         $this->setCompanyId(1);
         $model->fetchOne(3);
     }
@@ -37,7 +37,7 @@ final class ModelWithPermissionsTest extends TestWithMocks
     public function testModelFetchManyOnlyFetchesSameCompanyUsers(): void
     {
         [$db, $logger] = $this->setupDeps();
-        $model = new TestUserModel($db, $logger);
+        $model = new UserModel($db, $logger);
         $this->setCompanyId(2);
         $results = $model->fetchMany();
         $this->assertEquals(2, count($results));
@@ -48,7 +48,7 @@ final class ModelWithPermissionsTest extends TestWithMocks
     public function testUpdateForcesCompanyId(): void
     {
         [$db, $logger] = $this->setupDeps();
-        $model = new TestUserModel($db, $logger);
+        $model = new UserModel($db, $logger);
         $this->setCompanyId(1);
 
         $beforeUpdate = $model->fetchOne(1);
@@ -67,7 +67,7 @@ final class ModelWithPermissionsTest extends TestWithMocks
     public function testInsertForcesCompanyId(): void
     {
         [$db, $logger] = $this->setupDeps();
-        $model = new TestUserModel($db, $logger);
+        $model = new UserModel($db, $logger);
         $this->setCompanyId(2);
 
         $returned = $model->create(['name' => 'company1user3', 'companyId' => 8]);
