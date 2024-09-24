@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Lucite\Model;
 
 use PDO;
+use Psr\Http\Message\ServerRequestInterface;
 use Psr\Log\LoggerInterface;
 use Lucite\Model\Exception\NotFoundException;
 
@@ -13,6 +14,7 @@ abstract class Model
     protected PDO $db;
     protected LoggerInterface $logger;
     protected array $warnings = [];
+    protected ?ServerRequestInterface $request = null;
 
     public static string $tableName = 'SET_ON_CHILD_CLASS';
     public static string $primaryKey = 'SET_ON_CHILD_CLASS';
@@ -25,20 +27,43 @@ abstract class Model
         $this->logger = $logger;
     }
 
-    public function addWarning(string $newWarning): void
+    /**
+     * Add a warning to internal array of warnings
+     * @return array
+     */
+    protected function addWarning(string $newWarning): void
     {
         $this->warnings[] = $newWarning;
     }
 
+    /**
+     * Reset array of warnings
+     * @return array
+     */
     public function resetWarnings(): Model
     {
         $this->warnings = [];
         return $this;
     }
 
+    /**
+     * Get the array of warnings
+     * @return array
+     */
     public function getWarnings(): array
     {
         return $this->warnings;
+    }
+
+    /**
+     * Associate a ServerRequest with the model. Useful for adding permission checks.
+     * @param ServerRequestInterface $request
+     * @return Model
+     */
+    public function forRequest(ServerRequestInterface $request): Model
+    {
+        $this->request = $request;
+        return $this;
     }
 
     /**
