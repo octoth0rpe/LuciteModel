@@ -3,7 +3,8 @@
     "type": "library",
     "require-dev": {
         "phpunit/phpunit": "^11.3",
-        "laravel/pint": "^1.17"
+        "laravel/pint": "^1.17",
+        "lucite/mocklogger": "^0.0"
     },
     "license": "MIT",
     "autoload": {
@@ -22,6 +23,6 @@
     },
     "scripts": {
       "format": "pint --preset psr12",
-      "test": "phpunit --stderr  api/tests/"
+      "test": "phpunit --stderr tests/"
     }
 }

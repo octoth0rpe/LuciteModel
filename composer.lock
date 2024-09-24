@@ -4,8 +4,60 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0efe628a835e559a90c9a00ce6f335ea",
+    "content-hash": "d96fbb3fc74556085684bd711bded8ca",
     "packages": [
+        {
+            "name": "psr/log",
+            "version": "3.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-fig/log.git",
+                "reference": "f16e1d5863e37f8d8c2a01719f5b34baa2b714d3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-fig/log/zipball/f16e1d5863e37f8d8c2a01719f5b34baa2b714d3",
+                "reference": "f16e1d5863e37f8d8c2a01719f5b34baa2b714d3",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.0.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Psr\\Log\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "PHP-FIG",
+                    "homepage": "https://www.php-fig.org/"
+                }
+            ],
+            "description": "Common interface for logging libraries",
+            "homepage": "https://github.com/php-fig/log",
+            "keywords": [
+                "log",
+                "psr",
+                "psr-3"
+            ],
+            "support": {
+                "source": "https://github.com/php-fig/log/tree/3.0.2"
+            },
+            "time": "2024-09-11T13:17:53+00:00"
+        }
+    ],
+    "packages-dev": [
         {
             "name": "laravel/pint",
             "version": "v1.17.3",
@@ -73,31 +125,30 @@
             "time": "2024-09-03T15:00:28+00:00"
         },
         {
-            "name": "psr/log",
-            "version": "3.0.2",
+            "name": "lucite/mocklogger",
+            "version": "v0.0.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/php-fig/log.git",
-                "reference": "f16e1d5863e37f8d8c2a01719f5b34baa2b714d3"
+                "url": "https://github.com/octoth0rpe/LuciteMockLogger.git",
+                "reference": "970f58fe0f82da904f21c38fe8828ac102556e6e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/log/zipball/f16e1d5863e37f8d8c2a01719f5b34baa2b714d3",
-                "reference": "f16e1d5863e37f8d8c2a01719f5b34baa2b714d3",
+                "url": "https://api.github.com/repos/octoth0rpe/LuciteMockLogger/zipball/970f58fe0f82da904f21c38fe8828ac102556e6e",
+                "reference": "970f58fe0f82da904f21c38fe8828ac102556e6e",
                 "shasum": ""
             },
             "require": {
-                "php": ">=8.0.0"
+                "psr/log": "^3.0"
+            },
+            "require-dev": {
+                "laravel/pint": "^1.17",
+                "phpunit/phpunit": "^11.3"
             },
             "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "3.x-dev"
-                }
-            },
             "autoload": {
                 "psr-4": {
-                    "Psr\\Log\\": "src"
+                    "Lucite\\MockLogger\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -106,24 +157,16 @@
             ],
             "authors": [
                 {
-                    "name": "PHP-FIG",
-                    "homepage": "https://www.php-fig.org/"
+                    "name": "Mike Thorn",
+                    "email": "mthorn.work@gmail.com"
                 }
             ],
-            "description": "Common interface for logging libraries",
-            "homepage": "https://github.com/php-fig/log",
-            "keywords": [
-                "log",
-                "psr",
-                "psr-3"
-            ],
             "support": {
-                "source": "https://github.com/php-fig/log/tree/3.0.2"
+                "issues": "https://github.com/octoth0rpe/LuciteMockLogger/issues",
+                "source": "https://github.com/octoth0rpe/LuciteMockLogger/tree/v0.0.1"
             },
-            "time": "2024-09-11T13:17:53+00:00"
-        }
-    ],
-    "packages-dev": [
+            "time": "2024-09-23T23:42:41+00:00"
+        },
         {
             "name": "myclabs/deep-copy",
             "version": "1.12.0",
