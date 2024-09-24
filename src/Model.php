@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Lucite\Model;
 
 use PDO;
+use Psr\Http\Message\ServerRequestInterface as Req;
 use Psr\Log\LoggerInterface;
 use Lucite\Model\Exception\NotFoundException;
 
@@ -13,15 +14,18 @@ abstract class Model
     protected PDO $db;
     protected LoggerInterface $logger;
     protected array $warnings = [];
+    protected ?Req $request;
+
     public static string $tableName = 'SET_ON_CHILD_CLASS';
     public static string $primaryKey = 'SET_ON_CHILD_CLASS';
     public static array $columns = [];
     public static array $readonlyColumns = [];
 
-    public function __construct(PDO $db, LoggerInterface $logger)
+    public function __construct(PDO $db, LoggerInterface $logger, ?Req $request = null)
     {
         $this->db = $db;
         $this->logger = $logger;
+        $this->request = $request;
     }
 
     public function addWarning(string $newWarning): void
