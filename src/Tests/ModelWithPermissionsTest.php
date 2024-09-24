@@ -2,7 +2,8 @@
 
 declare(strict_types=1);
 
-include_once('TestWithMocks.php');
+namespace Lucite\Model\Tests;
+
 use Lucite\Model\Model;
 use Lucite\Model\Exception\NotFoundException;
 

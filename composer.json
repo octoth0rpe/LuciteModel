@@ -23,6 +23,6 @@
     },
     "scripts": {
       "format": "pint --preset psr12",
-      "test": "phpunit --stderr tests/"
+      "test": "phpunit --stderr src/Tests/"
     }
 }

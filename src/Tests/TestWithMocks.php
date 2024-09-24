@@ -2,6 +2,9 @@
 
 declare(strict_types=1);
 
+namespace Lucite\Model\Tests;
+
+use PDO;
 use PHPUnit\Framework\TestCase;
 use Lucite\MockLogger\MockLogger;
 
