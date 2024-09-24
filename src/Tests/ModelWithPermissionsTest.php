@@ -4,32 +4,7 @@ declare(strict_types=1);
 
 namespace Lucite\Model\Tests;
 
-use Lucite\Model\Model;
 use Lucite\Model\Exception\NotFoundException;
-
-global $user;
-$user = ['companyId' => 1];
-
-class UserModel extends Model
-{
-    public static string $tableName = 'users';
-    public static string $primaryKey = 'userId';
-    public static array $columns = ['companyId', 'name', 'createdOn'];
-
-    public function applyPermissionValues(array &$data): void
-    {
-        global $user;
-        $data['companyId'] = $user['companyId'];
-    }
-
-    public function getPermissionFilter(array &$args): string
-    {
-        global $user;
-        $placeholderName = '__permissionCompanyId';
-        $args[$placeholderName] = $user['companyId'];
-        return ' AND "companyId"=:'.$placeholderName;
-    }
-}
 
 final class ModelWithPermissionsTest extends TestWithMocks
 {
@@ -42,7 +17,7 @@ final class ModelWithPermissionsTest extends TestWithMocks
     public function testModelFetchOneWithPermissionsApplied(): void
     {
         [$db, $logger] = $this->setupDeps();
-        $model = new UserModel($db, $logger);
+        $model = new TestUserModel($db, $logger);
         $this->setCompanyId(1);
         $user1 = $model->fetchOne(1);
         $this->assertEquals('company1user1', $user1['name']);
@@ -54,7 +29,7 @@ final class ModelWithPermissionsTest extends TestWithMocks
     {
         $this->expectException(NotFoundException::class);
         [$db, $logger] = $this->setupDeps();
-        $model = new UserModel($db, $logger);
+        $model = new TestUserModel($db, $logger);
         $this->setCompanyId(1);
         $model->fetchOne(3);
     }
@@ -62,7 +37,7 @@ final class ModelWithPermissionsTest extends TestWithMocks
     public function testModelFetchManyOnlyFetchesSameCompanyUsers(): void
     {
         [$db, $logger] = $this->setupDeps();
-        $model = new UserModel($db, $logger);
+        $model = new TestUserModel($db, $logger);
         $this->setCompanyId(2);
         $results = $model->fetchMany();
         $this->assertEquals(2, count($results));
@@ -73,7 +48,7 @@ final class ModelWithPermissionsTest extends TestWithMocks
     public function testUpdateForcesCompanyId(): void
     {
         [$db, $logger] = $this->setupDeps();
-        $model = new UserModel($db, $logger);
+        $model = new TestUserModel($db, $logger);
         $this->setCompanyId(1);
 
         $beforeUpdate = $model->fetchOne(1);
@@ -92,7 +67,7 @@ final class ModelWithPermissionsTest extends TestWithMocks
     public function testInsertForcesCompanyId(): void
     {
         [$db, $logger] = $this->setupDeps();
-        $model = new UserModel($db, $logger);
+        $model = new TestUserModel($db, $logger);
         $this->setCompanyId(2);
 
         $returned = $model->create(['name' => 'company1user3', 'companyId' => 8]);
