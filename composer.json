@@ -19,8 +19,7 @@
         }
     ],
     "require": {
-        "psr/log": "^3.0",
-        "psr/http-message": "^2.0"
+        "psr/log": "^3.0"
     },
     "scripts": {
       "format": "pint --preset psr12",
